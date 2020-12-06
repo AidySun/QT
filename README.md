@@ -87,6 +87,23 @@ protected:
 		}
 		QPushButton::mousePressedEvent(e);
 	}
+
+/// event filter
+
+private: 
+	MyLabel *label;
+	/*
+	label->installEventFilter(this);
+
+	bool eventFilter(QObject *obj, QEvent *e) {
+		if (obj == lable) {
+			if (e->type() == QEvent::MouseMove) {
+				// ...
+			}
+		}
+		return QWidget::eventFilter(obj, e);
+	}
+	*/
 };
 ```
 

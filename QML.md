@@ -45,3 +45,79 @@ var newObject = Qt.createQmlObject('import QtQuick 2.0; Rectangle {color: "red";
                                    parentItem,
                                    "dynamicSnippet1");
 ```
+
+
+## Layout Managers in QML
+
+1. Anchor Layout
+1. Posintioners. `row/column/grid`
+1. Qt Quick controls layout
+1. Manually with literal `x, y, width, height`
+
+### Anchor Layout
+
+- Two special anchors
+  - `centerIn`
+  - `fill`
+
+
+## Qt Quick
+
+The Qt Quick module is the standard library for writing QML applications. It provides:
+  - QML API: supplies QML types for creating user interfaces with QML
+    - Javascript
+  - C++ API: for extanding QML applications with C++ code
+
+## Color
+
+### Ways to be specified
+
+1. color name
+2. `#<aa><rr><gg><bb>`. e.g. "#00ff0000"
+3. `Qt.rgba(0, 0, 255, 0)`
+
+### Gradient
+
+```
+gradient: Gradient {
+	GradientStop {
+		position: 0.0
+		color: "yellow"
+	}
+
+	GradientStop {
+		position: 1.0
+		color: "blue"
+	}
+}
+```
+
+## Binding Loop
+
+```
+Rectangle {
+	width: child.width
+	height: child.height
+
+	Rectangle {
+		id: child
+		anchors.fill: parent
+		anchors.margins: 5
+	}
+}
+```
+
+- one solution
+
+```
+Rectangle {
+	implicitWidth: child.implicitWidth
+	implicitHeight: child.implicitHeight
+
+	Rectangle {
+		id: child
+		anchors.fill: parent
+		anchors.margins: 5
+	}
+}``
+```

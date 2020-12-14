@@ -1,5 +1,47 @@
 # QT
 
+<!-- MarkdownTOC autolink=true -->
+
+- [Qt Modules](#qt-modules)
+- [.pro](#pro)
+- [Concrete QWidget](#concrete-qwidget)
+- [UIC](#uic)
+- [MOC \(meta-object compiler\)](#moc-meta-object-compiler)
+	- [Signal](#signal)
+	- [Slots](#slots)
+	- [slot/signal in Qt 4](#slotsignal-in-qt-4)
+- [UI](#ui)
+	- [Stylesheet](#stylesheet)
+	- [Layout](#layout)
+		- [1. Anchor](#1-anchor)
+		- [2. Layout](#2-layout)
+- [Event](#event)
+	- [event filter](#event-filter)
+- [Paint](#paint)
+	- [Device](#device)
+- [File](#file)
+
+<!-- /MarkdownTOC -->
+
+## Qt Modules
+
+- Basic
+  - Qt Core
+  - Qt GUI
+  - Qt Quick
+  - Qt QML
+  - Qt Test
+  - Qt Network
+  - Qt Multimedia
+  - Qt SQL
+  - Qt Webkit
+  - Qt WebKit Widgets
+  - Qt Widgets
+- Extended
+  - Qt 3D / Qt Bluetooth / Qt Contact
+  - Qt Location / Qt Organizer / Qt Sensors / Qt Publis and Subscribe
+  - Qt Service Framework / System Info / JSON DB / Versit / Wayland / Feekback
+
 ## .pro
 
 ```
@@ -73,6 +115,27 @@ signals: 	// no return value, optional parameters // only declare, no implementa
 
 ### Stylesheet
 
+### Layout
+
+#### 1. Anchor
+
+- `x, y, width, height` could be affected by anchor
+```
+Rectangle {
+	id: bg
+
+	Rectangle {
+		width: 40; height: 40
+		y: 20
+		anchor.right: bg.right
+		anchor.top: bg.top 		// override y:20
+	}
+}
+```
+
+#### 2. Layout
+
+
 ## Event
 
 - `e.ignore()` generally is not used in override event functions, it may used in dialog close event.
@@ -107,10 +170,28 @@ private:
 };
 ```
 
+### event filter
+
+- In `QObject`
+- return `true` : it won't forward anymore; return `false` : it will continue forward
+- **event filter and the object/widget it filters MUST be in same thread**
+
+## Paint
 
 
+### Device
 
+1. QPixmap: optimized for scree, platform-related, cannot modify image
+2. QImage : platfor-unrelated, can modify pixes of image, can be drawn in thread
+3. QPicture : save paiting status in binary
 
+## File
+
+- 
+```
+QFileInfo q(path);
+qDebug << q.fileName().utf8().data(); // multil-bytes
+```
 
 
 

@@ -121,3 +121,46 @@ Rectangle {
 	}
 }
 ```
+
+## Assignment v.s. Declaration
+
+It's the diff between imperative programming by assiging value to properties and declarative programming with property binding.
+
+- Assignment to a property would overwrite the declaration of the property
+```
+Item {
+	Rectangle {
+		color: rec2.
+
+	}
+	Rectangle {
+		id: rec2
+		MouseArea {
+			anchors.fill: parent
+			onPositionChanged: 
+
+		}
+	}
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

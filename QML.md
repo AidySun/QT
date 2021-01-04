@@ -119,5 +119,5 @@ Rectangle {
 		anchors.fill: parent
 		anchors.margins: 5
 	}
-}``
+}
 ```

@@ -144,6 +144,30 @@ Item {
 }
 ```
 
+## Loader
+
+Can dynamicly load QML component or file.
+
+```
+Item {
+	Loader {
+		id: dynamicLoader
+	}
+
+	Rectangle {
+		MouseArea {
+			anchors.fill: parent
+			onClicked: dynamicLoader.source = "dynamicItem.qml"
+		}
+	}
+
+	// Singles emmitted by loaded object can be received using the **Connections** type
+	Connections {
+		target: dynamicLoader.item
+		onMessage: console.log(msg)
+	}
+}
+```
 
 
 

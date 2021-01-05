@@ -10,6 +10,7 @@
 	- [Signal](#signal)
 	- [Slots](#slots)
 	- [slot/signal in Qt 4](#slotsignal-in-qt-4)
+	- [QObject](#qobject)
 - [UI](#ui)
 	- [Stylesheet](#stylesheet)
 	- [Layout](#layout)
@@ -106,6 +107,14 @@ signals: 	// no return value, optional parameters // only declare, no implementa
 - Qt5
   - `QObject::connect(&button, &QPushButton::clicked, &app, &QApplication::quit);`
 
+### QObject
+
+- adds features to C++ (MOC)
+  - signals and slots
+  - Properties
+  - Event handlong
+  - Memory Management
+    - destruct all children first in its destructor
 
 ## UI
 

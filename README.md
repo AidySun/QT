@@ -107,6 +107,12 @@ signals: 	// no return value, optional parameters // only declare, no implementa
 - Qt5
   - `QObject::connect(&button, &QPushButton::clicked, &app, &QApplication::quit);`
 
+- Lambda
+  - `QObject::connect(button, &QPushButton::clicked, secondWindow, [secondWindow]() {
+  		secondWindow->setText("clicked");
+  	});`
+  - the 3rd parameter `secondWindow` is optional, but to specific it would prevent crash issue once `secondWindow` is deleted earlier than current connect.
+
 ### QObject
 
 - adds features to C++ (MOC)

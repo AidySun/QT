@@ -148,6 +148,7 @@ Item {
 
 Can dynamicly load QML component or file.
 
+
 ```
 Item {
 	Loader {
@@ -169,7 +170,38 @@ Item {
 }
 ```
 
-
+- There are two ways to create reusable user interface components
+  1. Components
+    - Defined with `Component` item
+    - Used as templates for items
+    - Used with models and view
+    - Used with generated content
+    - Can be instantiated dynamically
+    ```
+    Component {
+    	id: myComponent
+    	Text { ... }
+    }
+    ```
+    - It's not directly instantiated, but it can be used with
+      - Loader
+      - Repeater
+      - Views
+      - Scripting
+  1. Custom Items
+    - Defined in sparated files
+    - One main element per file
+    - Used in the same was as standard items
+    - Can have an associated version number
+    ```
+    // MyRecoangle.qml
+    Rectangle {
+    	color: "white"
+    	TextInput { ... }
+    }
+    ```
+    - File name **MUST** start with a capital letter
+      - Remember the convention as when we define any standard element, e.g. `Rectangle`, `Text` etc. They are all capitalized.
 
 
 

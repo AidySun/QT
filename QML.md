@@ -3,7 +3,7 @@
 
 1. qmlscence.exe xxx.qml
 
-2. 
+2. xxx
 ```
 !env qml
 ```
@@ -34,9 +34,15 @@ Item {
         }
     }
 
-    Component.onCompleted: loadButton()
-}
+    Component.onCompleted: loadButton() 
+    Component.onDestruction: console.log("Destruction Beginning!")
+} 
 ```
+
+- `completed()` 
+  - Emitted after the object has been instantiated. This can be used to execute script code at startup, once the full QML environment has been established.
+  - The `onCompleted` signal handler can be declared on any object. **The order of running the handlers is undefined.**
+  - same to `onDestruction`
 
 1. `object createQmlObject(string qml, object parent, string filepath)`
 
@@ -203,6 +209,11 @@ Item {
     - File name **MUST** start with a capital letter
       - Remember the convention as when we define any standard element, e.g. `Rectangle`, `Text` etc. They are all capitalized.
 
+
+### `objectName` v.s. `id`
+
+- Every QML object can be assigned an id and an objectName that other objects can use to refer to the object.
+- The difference between the two is that the id is for referencing the object within QML, while the objectName is required for referencing the object from C++.
 
 
 

@@ -1,5 +1,10 @@
 # QFace
 
+- https://qface.readthedocs.io/en/latest/
+- QFace is a flexible API generator inspired by the Qt API idioms. 
+  - It uses a common IDL format (called QFace interface document) to define an API.
+  - QFace is optimized to write a custom generator based on the common IDL format.
+
 ## Grammer
 
 - module

@@ -1,5 +1,22 @@
 # QML
 
+<!-- MarkdownTOC -->
+
+- Dynamic QML Object Creation from JavaScript
+- Layout Managers in QML
+	- Anchor Layout
+- Qt Quick
+- Color
+	- Ways to be specified
+	- Gradient
+- Binding Loop
+- Assignment v.s. Declaration
+- Component & Customize Item
+	- `objectName` v.s. `id`
+- Size & Layout
+
+<!-- /MarkdownTOC -->
+
 
 1. qmlscence.exe xxx.qml
 
@@ -51,7 +68,6 @@ var newObject = Qt.createQmlObject('import QtQuick 2.0; Rectangle {color: "red";
                                    parentItem,
                                    "dynamicSnippet1");
 ```
-
 
 ## Layout Managers in QML
 
@@ -113,7 +129,7 @@ Rectangle {
 }
 ```
 
-- one solution
+- one solution	: **implicitWidth**
 
 ```
 Rectangle {
@@ -150,10 +166,46 @@ Item {
 }
 ```
 
-## Loader
+
+## Component & Customize Item
+
+There are two ways to create reusable user interface components
+
+1. Components
+  - Defined with `Component` item
+  - Used as templates for items
+  - Used with models and view
+  - Used with generated content
+  - Can be instantiated dynamically
+  ```
+  Component {
+  	id: myComponent
+  	Text { ... }
+  }
+  ```
+  - It's not directly instantiated, but it can be used with
+    - Loader
+    - Repeater
+    - Views
+    - Scripting
+2. Custom Items / Loader?
+  - Defined in sparated files
+  - One main element per file
+  - Used in the same was as standard items
+  - Can have an associated version number
+  ```
+  // MyRecoangle.qml
+  Rectangle {
+  	color: "white"
+  	TextInput { ... }
+  }
+  ```
+  - File name **MUST** start with a capital letter
+    - Remember the convention as when we define any standard element, e.g. `Rectangle`, `Text` etc. They are all capitalized.
+
+- Loader
 
 Can dynamicly load QML component or file.
-
 
 ```
 Item {
@@ -176,46 +228,13 @@ Item {
 }
 ```
 
-- There are two ways to create reusable user interface components
-  1. Components
-    - Defined with `Component` item
-    - Used as templates for items
-    - Used with models and view
-    - Used with generated content
-    - Can be instantiated dynamically
-    ```
-    Component {
-    	id: myComponent
-    	Text { ... }
-    }
-    ```
-    - It's not directly instantiated, but it can be used with
-      - Loader
-      - Repeater
-      - Views
-      - Scripting
-  1. Custom Items
-    - Defined in sparated files
-    - One main element per file
-    - Used in the same was as standard items
-    - Can have an associated version number
-    ```
-    // MyRecoangle.qml
-    Rectangle {
-    	color: "white"
-    	TextInput { ... }
-    }
-    ```
-    - File name **MUST** start with a capital letter
-      - Remember the convention as when we define any standard element, e.g. `Rectangle`, `Text` etc. They are all capitalized.
-
-
 ### `objectName` v.s. `id`
 
 - Every QML object can be assigned an id and an objectName that other objects can use to refer to the object.
 - The difference between the two is that the id is for referencing the object within QML, while the objectName is required for referencing the object from C++.
 
 
+## Size & Layout
 
 
 

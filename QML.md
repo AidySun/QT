@@ -12,8 +12,13 @@
 - Binding Loop
 - Assignment v.s. Declaration
 - Component & Customize Item
+	- Loader
 	- `objectName` v.s. `id`
 - Size & Layout
+	- implicit size v.s. size
+- QML Widgets
+- Integration with C++
+- QML with CMake
 
 <!-- /MarkdownTOC -->
 
@@ -203,14 +208,16 @@ There are two ways to create reusable user interface components
   - File name **MUST** start with a capital letter
     - Remember the convention as when we define any standard element, e.g. `Rectangle`, `Text` etc. They are all capitalized.
 
-- Loader
+### Loader
 
 Can dynamicly load QML component or file.
 
+- load file (with `source` property)
 ```
 Item {
 	Loader {
 		id: dynamicLoader
+		// source: "" // set source = "" to unload the qml
 	}
 
 	Rectangle {
@@ -228,6 +235,22 @@ Item {
 }
 ```
 
+- load component (with `sourceComponent` property)
+```
+Component {
+	id: myComp
+	Item {
+		...
+	}
+}
+
+Loader {
+	id: componentLoader
+	anchor.fill: parent
+	sourceComponent: myComp
+}
+```
+
 ### `objectName` v.s. `id`
 
 - Every QML object can be assigned an id and an objectName that other objects can use to refer to the object.
@@ -236,11 +259,63 @@ Item {
 
 ## Size & Layout
 
+### implicit size v.s. size
+
+- implicitWidth : real
+  Defines the natural width or height of the Item if no width or height is specified.
+  The default implicit size for most items is 0x0, however some items have an inherent implicit size which cannot be overridden, for example, Image and Text.
+  - Generally, usage of implicitHeight/Width only makes sense within reusable components. 
+
+- width
+  Defines the item's position and size.
+
+- I use them as follows: 
+  - When I create a new item and it can be resized, I set an implicit size inside the object2. When I'm using the object, I often set the real size explicitly from the outside.
+  - The implicit size of an object can be overridden by setting height and width.
+
+## QML Widgets
+
+- `WebView` vs `WebEngineView`
+  - `WebView` uses a native web view if available.
 
 
+## Integration with C++
+
+- https://doc.qt.io/qt-5/qtqml-cppintegration-topic.html
+
+```
+#ifndef BACKEND_H
+#define BACKEND_H
+
+#include <QObject>
+#include <QString>
+#include <qqml.h>
+
+class BackEnd : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
+    QML_ELEMENT
+
+public:
+    explicit BackEnd(QObject *parent = nullptr);
+
+    QString userName();
+    void setUserName(const QString &userName);
+
+signals:
+    void userNameChanged();
+
+private:
+    QString m_userName;
+};
+
+#endif // BACKEND_H
+```
+- The `QML_ELEMENT` macro makes the BackEnd class available in QML.
 
 
-
+## QML with CMake
 
 
 

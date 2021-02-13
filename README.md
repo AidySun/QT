@@ -122,6 +122,16 @@ signals: 	// no return value, optional parameters // only declare, no implementa
   - Memory Management
     - destruct all children first in its destructor
 
+## Q_OBJECT v.s. Q_GADGET
+
+Q_GADGET is lighter version of Q_OBJECT, it doesn't have signal and slot.
+
+```
+The Q_GADGET macro is a lighter version of the Q_OBJECT macro for classes that do not inherit from QObject but still want to use some of the reflection capabilities offered by QMetaObject. Just like the Q_OBJECT macro, it must appear in the private section of a class definition.
+Q_GADGETs can have Q_ENUM, Q_PROPERTY and Q_INVOKABLE, but they cannot have signals or slots.
+Q_GADGET makes a class member, staticMetaObject, available. staticMetaObject is of type QMetaObject and provides access to the enums declared with Q_ENUMS.
+```
+
 ## UI
 
 - relative path used in UI is related to Makefile

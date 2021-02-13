@@ -1,37 +1,57 @@
 # QML
 
-<!-- MarkdownTOC -->
+<!-- MarkdownTOC autolink="true" -->
 
-- Dynamic QML Object Creation from JavaScript
-- Layout Managers in QML
-	- Anchor Layout
-- Qt Quick
-- Color
-	- Ways to be specified
-	- Gradient
-- Binding Loop
-- Assignment v.s. Declaration
-- Component & Customize Item
-	- Loader
-		- binding and connection of loader
-	- `objectName` v.s. `id`
-- Size & Layout
-	- implicit size v.s. size
-- QML Widgets
-- Integration with C++
-- QML with CMake
+- [qmldir](#qmldir)
+	- [directory listing qmldir file](#directory-listing-qmldir-file)
+	- [module definition qmldir file](#module-definition-qmldir-file)
+- [Dynamic QML Object Creation from JavaScript](#dynamic-qml-object-creation-from-javascript)
+- [Layout Managers in QML](#layout-managers-in-qml)
+	- [Anchor Layout](#anchor-layout)
+- [Qt Quick](#qt-quick)
+- [Color](#color)
+	- [Ways to be specified](#ways-to-be-specified)
+	- [Gradient](#gradient)
+- [Binding Loop](#binding-loop)
+- [Assignment v.s. Declaration](#assignment-vs-declaration)
+- [Loader](#loader)
+	- [`objectName` v.s. `id`](#objectname-vs-id)
 
 <!-- /MarkdownTOC -->
 
 
 1. qmlscence.exe xxx.qml
-
 2. xxx
 ```
 !env qml
 ```
 3. qmake xxx.pro
-nmake/make
+  - nmake/make
+
+## qmldir
+
+### directory listing qmldir file
+
+- [internal] Object type declaration
+  - *internal* can only be seen by qml in same dir, cannot be seen by qml files that import this dir
+- Javascript resource declaration
+```
+RoundedButton RoundBtn.qml
+internal HightlightButton HLBtn.qml
+MathFunctions mathFuncs.js
+```
+
+### module definition qmldir file
+
+```
+module MyModule
+MyButton 1.0 MyButton.qml
+MyButton 1.1 MyButton11.qml
+```
+- It's recommended to use diff directories for each major version.
+
+
+
 
 ## [Dynamic QML Object Creation from JavaScript](https://doc.qt.io/qt-5/qtqml-javascript-dynamicobjectcreation.html)
 

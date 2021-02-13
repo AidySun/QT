@@ -13,6 +13,7 @@
 - Assignment v.s. Declaration
 - Component & Customize Item
 	- Loader
+		- binding and connection of loader
 	- `objectName` v.s. `id`
 - Size & Layout
 	- implicit size v.s. size
@@ -210,7 +211,8 @@ There are two ways to create reusable user interface components
 
 ### Loader
 
-Can dynamicly load QML component or file.
+Can dynamicly load QML component or file. 
+`onLoaded` signal handler is invoked on completion; `item` property holds root item
 
 - load file (with `source` property)
 ```
@@ -248,6 +250,25 @@ Loader {
 	id: componentLoader
 	anchor.fill: parent
 	sourceComponent: myComp
+}
+```
+
+####  binding and connection of loader
+
+```
+Loader {
+	id: loader
+	source: "LineEdit.qml"
+}
+
+Connections {
+	target: loader.item
+	onReturePressed: currentTxt.text = "Return " + text
+}
+Binding {
+	target: loader.item
+	property: "text"
+	value: "Hello world!"
 }
 ```
 

@@ -24,6 +24,15 @@
 
 <!-- /MarkdownTOC -->
 
+## qtchooser
+
+```
+vi /usr/lib/x86_64-linux-gun/qt-chooser/default.conf
+  <qt>/bin
+  <qt>/lib
+```
+
+
 ## Qt Modules
 
 - Basic

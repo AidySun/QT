@@ -2,6 +2,10 @@
 
 <!-- MarkdownTOC autolink="true" -->
 
+- [MOC](#moc)
+- [Types](#types)
+- [Qt Application Manager \(appman\)](#qt-application-manager-appman)
+	- [controller](#controller)
 - [qmldir](#qmldir)
 	- [directory listing qmldir file](#directory-listing-qmldir-file)
 	- [module definition qmldir file](#module-definition-qmldir-file)
@@ -14,8 +18,15 @@
 	- [Gradient](#gradient)
 - [Binding Loop](#binding-loop)
 - [Assignment v.s. Declaration](#assignment-vs-declaration)
-- [Loader](#loader)
+- [Component & Customize Item](#component--customize-item)
+	- [Loader](#loader)
+		- [binding and connection of loader](#binding-and-connection-of-loader)
 	- [`objectName` v.s. `id`](#objectname-vs-id)
+- [Size & Layout](#size--layout)
+	- [implicit size v.s. size](#implicit-size-vs-size)
+- [QML Widgets](#qml-widgets)
+- [Integration with C++](#integration-with-c)
+- [QML with CMake](#qml-with-cmake)
 
 <!-- /MarkdownTOC -->
 
@@ -27,6 +38,44 @@
 ```
 3. qmake xxx.pro
   - nmake/make
+
+## MOC
+
+- qobject_cast<MyClass*>(obj);
+- Q_PROPERTY(bool empty READ isEmpty WRITE setEmpty NOTIFY emptyChanged);
+
+## Types
+
+- <QtGlobal>
+```
+qint8     	 signed char   	 1
+qint16    	 signed short  	 2
+qint32    	 signed int    	 4
+qint64    	 long long int 	 8
+qlonglong 	 long long int 	 8
+```
+
+## Qt Application Manager (appman)
+
+A headless daemon by itself.
+
+- controller
+  - a command-line utility to trigger the installation of specific package on the target devicet
+  - can be used by developer or other tools, on the target device to control the application manager without communicating directlly with its D-Bus interface.
+- packager
+  - a command-line utility to manage the installation of packages.
+- yaml
+- QtApplicationManager.SystemUI
+- QtApplicationManager.Application
+
+### controller
+
+- commands
+```
+start-application
+debug-application // start the app with DebugWrappers
+
+```
 
 ## qmldir
 
@@ -50,11 +99,7 @@ MyButton 1.1 MyButton11.qml
 ```
 - It's recommended to use diff directories for each major version.
 
-
-
-
 ## [Dynamic QML Object Creation from JavaScript](https://doc.qt.io/qt-5/qtqml-javascript-dynamicobjectcreation.html)
-
 
 There are two ways to create objects dynamically from JavaScript.
 You can either call Qt.createComponent() to dynamically create a Component object, 

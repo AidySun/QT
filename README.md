@@ -2,25 +2,29 @@
 
 <!-- MarkdownTOC autolink=true -->
 
+- [qtchooser](#qtchooser)
 - [Qt Modules](#qt-modules)
 - [.pro](#pro)
 - [Concrete QWidget](#concrete-qwidget)
 - [UIC](#uic)
 - [MOC \(meta-object compiler\)](#moc-meta-object-compiler)
-	- [Signal](#signal)
-	- [Slots](#slots)
-	- [slot/signal in Qt 4](#slotsignal-in-qt-4)
-	- [QObject](#qobject)
+  - [Signal](#signal)
+  - [Slots](#slots)
+  - [slot/signal in Qt 4](#slotsignal-in-qt-4)
+  - [QObject](#qobject)
+- [Q_OBJECT v.s. Q_GADGET](#q_object-vs-q_gadget)
 - [UI](#ui)
-	- [Stylesheet](#stylesheet)
-	- [Layout](#layout)
-		- [1. Anchor](#1-anchor)
-		- [2. Layout](#2-layout)
+  - [Stylesheet](#stylesheet)
+  - [Layout](#layout)
+    - [1. Anchor](#1-anchor)
+    - [2. Layout](#2-layout)
 - [Event](#event)
-	- [event filter](#event-filter)
+  - [event filter](#event-filter)
 - [Paint](#paint)
-	- [Device](#device)
+  - [Device](#device)
 - [File](#file)
+- [Logging](#logging)
+  - [Logging Rules](#logging-rules)
 
 <!-- /MarkdownTOC -->
 
@@ -228,7 +232,44 @@ qDebug << q.fileName().utf8().data(); // multil-bytes
 ```
 
 
+## Logging
 
+- Def Logging category in code 
+```
+bool Highscore::load(const QString &filepath)
+{
+    QLoggingCategory fcIo("fc.io");
+    qCDebug(fcIo) << "Loading highscore ...";
+```
+- Def Logging category in one place
+```
+// fclogging.h
+#include <QLoggingCategory>
+Q_DECLARE_LOGGING_CATEGORY(fcIo)
+
+// fclogging.cpp
+#include "fclogging.h"
+Q_LOGGING_CATEGORY(fcIo, "fc.io")
+```
+
+### Logging Rules
+
+- Rules can be defined in config file or in code
+```
+int main(int argc, char **argv)
+{
+    QGuiApplication app(argc, argv);
+    QLoggingCategory::setFilterRules("*.debug=false\n"
+                                     "fc.io.debug=true");
+    // ...
+}
+
+// ~/.config/QtProject/qtlogging.ini:
+
+[rules]
+*.debug=false
+fc.io.debug=true
+```
 
 
 

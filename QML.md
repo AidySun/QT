@@ -5,25 +5,26 @@
 - [MOC](#moc)
 - [Types](#types)
 - [Qt Application Manager \(appman\)](#qt-application-manager-appman)
-	- [controller](#controller)
+  - [blocks of application manager](#blocks-of-application-manager)
+  - [controller](#controller)
 - [qmldir](#qmldir)
-	- [directory listing qmldir file](#directory-listing-qmldir-file)
-	- [module definition qmldir file](#module-definition-qmldir-file)
+  - [directory listing qmldir file](#directory-listing-qmldir-file)
+  - [module definition qmldir file](#module-definition-qmldir-file)
 - [Dynamic QML Object Creation from JavaScript](#dynamic-qml-object-creation-from-javascript)
 - [Layout Managers in QML](#layout-managers-in-qml)
-	- [Anchor Layout](#anchor-layout)
+  - [Anchor Layout](#anchor-layout)
 - [Qt Quick](#qt-quick)
 - [Color](#color)
-	- [Ways to be specified](#ways-to-be-specified)
-	- [Gradient](#gradient)
+  - [Ways to be specified](#ways-to-be-specified)
+  - [Gradient](#gradient)
 - [Binding Loop](#binding-loop)
 - [Assignment v.s. Declaration](#assignment-vs-declaration)
 - [Component & Customize Item](#component--customize-item)
-	- [Loader](#loader)
-		- [binding and connection of loader](#binding-and-connection-of-loader)
-	- [`objectName` v.s. `id`](#objectname-vs-id)
+  - [Loader](#loader)
+    - [binding and connection of loader](#binding-and-connection-of-loader)
+  - [`objectName` v.s. `id`](#objectname-vs-id)
 - [Size & Layout](#size--layout)
-	- [implicit size v.s. size](#implicit-size-vs-size)
+  - [implicit size v.s. size](#implicit-size-vs-size)
 - [QML Widgets](#qml-widgets)
 - [Integration with C++](#integration-with-c)
 - [QML with CMake](#qml-with-cmake)
@@ -67,6 +68,14 @@ A headless daemon by itself.
 - yaml
 - QtApplicationManager.SystemUI
 - QtApplicationManager.Application
+
+### blocks of application manager
+
+- Wayland window compositor
+- applicaion launcher
+- user input management
+- notifications
+
 
 ### controller
 

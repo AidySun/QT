@@ -5,6 +5,7 @@
 - [MOC](#moc)
 - [Types](#types)
 - [Qt Application Manager \(appman\)](#qt-application-manager-appman)
+	- [blocks of application manager](#blocks-of-application-manager)
 	- [controller](#controller)
 	- [Single-process vs. Multi-process Mode](#single-process-vs-multi-process-mode)
 - [qmldir](#qmldir)
@@ -68,6 +69,14 @@ A headless daemon by itself.
 - yaml
 - QtApplicationManager.SystemUI
 - QtApplicationManager.Application
+
+### blocks of application manager
+
+- Wayland window compositor
+- applicaion launcher
+- user input management
+- notifications
+
 
 ### controller
 

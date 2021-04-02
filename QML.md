@@ -6,6 +6,7 @@
 - [Types](#types)
 - [Qt Application Manager \(appman\)](#qt-application-manager-appman)
 	- [controller](#controller)
+	- [Single-process vs. Multi-process Mode](#single-process-vs-multi-process-mode)
 - [qmldir](#qmldir)
 	- [directory listing qmldir file](#directory-listing-qmldir-file)
 	- [module definition qmldir file](#module-definition-qmldir-file)
@@ -74,7 +75,15 @@ A headless daemon by itself.
 ```
 start-application
 debug-application // start the app with DebugWrappers
+stop-application
+```
 
+### Single-process vs. Multi-process Mode
+
+- Multi-Process: `System-UI` and `QML applications` all run in their own, dedicated process.
+- https://doc.qt.io/QtApplicationManager/singlevsmultiprocess.html
+```
+Internally, for every Qt application, which is ultimately a process, you can have only one Qt Platform (QPA) Plugin. To interact with the underlying window system, Qt needs to load this plugin first. The QPA plugin decides how many top-level windows you can open; but Qt can only load one such plugin at any point and it cannot be switched out at runtime. If you are using a low-level plugin, one that does not talk to a windowing system, such as EGL full-screen on an embedded device, you can only open one full screen window: the System UI.
 ```
 
 ## qmldir
